@@ -5,8 +5,9 @@ import contactsData from './contacts.json';
 const contacts = ref(contactsData.slice(0, 5));
 
 const addRandomContact = () => {
+  const contactIds = contacts.value.map(contact => contact.id); // Obtener una lista de IDs
   const remainingContacts = contactsData.filter(
-    contact => !contacts.value.includes(contact)
+    contact => !contactIds.includes(contact.id) // Comparar solo los IDs
   );
   if (remainingContacts.length > 0) {
     const randomIndex = Math.floor(Math.random() * remainingContacts.length);
